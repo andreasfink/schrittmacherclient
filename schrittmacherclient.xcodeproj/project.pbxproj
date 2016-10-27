@@ -1,0 +1,503 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A628C8B51CB924A000211137 /* schrittmacherclient.h in Headers */ = {isa = PBXBuildFile; fileRef = A628C8B31CB924A000211137 /* schrittmacherclient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A65736A41B14FE1B00854472 /* schrittmacherclient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A65736981B14FE1B00854472 /* schrittmacherclient.framework */; };
+		A65736AB1B14FE1B00854472 /* schrittmacherclientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A65736AA1B14FE1B00854472 /* schrittmacherclientTests.m */; };
+		A65736B61B14FE5700854472 /* UMSchrittmacherClient.h in Headers */ = {isa = PBXBuildFile; fileRef = A65736B41B14FE5700854472 /* UMSchrittmacherClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A65736B71B14FE5700854472 /* UMSchrittmacherClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A65736B51B14FE5700854472 /* UMSchrittmacherClient.m */; };
+		A67598111B1C76FE0090FC94 /* VERSION in Resources */ = {isa = PBXBuildFile; fileRef = A67598101B1C76FE0090FC94 /* VERSION */; };
+		A67598131B1C77070090FC94 /* version.h in Headers */ = {isa = PBXBuildFile; fileRef = A67598121B1C77070090FC94 /* version.h */; };
+		A6A98A041CBEAA3300211137 /* ulib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A98A031CBEAA3300211137 /* ulib.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A65736A51B14FE1B00854472 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A657368F1B14FE1B00854472 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A65736971B14FE1B00854472;
+			remoteInfo = schrittmacherclient;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A628C8B31CB924A000211137 /* schrittmacherclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schrittmacherclient.h; sourceTree = "<group>"; };
+		A65736981B14FE1B00854472 /* schrittmacherclient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = schrittmacherclient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A657369C1B14FE1B00854472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A65736A31B14FE1B00854472 /* schrittmacherclientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = schrittmacherclientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A65736A91B14FE1B00854472 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A65736AA1B14FE1B00854472 /* schrittmacherclientTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = schrittmacherclientTests.m; sourceTree = "<group>"; };
+		A65736B41B14FE5700854472 /* UMSchrittmacherClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSchrittmacherClient.h; sourceTree = "<group>"; };
+		A65736B51B14FE5700854472 /* UMSchrittmacherClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UMSchrittmacherClient.m; sourceTree = "<group>"; };
+		A67598101B1C76FE0090FC94 /* VERSION */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = VERSION; sourceTree = "<group>"; };
+		A67598121B1C77070090FC94 /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = version.h; sourceTree = "<group>"; };
+		A6A98A031CBEAA3300211137 /* ulib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ulib.framework; path = /Library/Frameworks/ulib.framework; sourceTree = "<absolute>"; };
+		A6F693F21B4E83940090FC94 /* configure.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = configure.in; sourceTree = "<group>"; };
+		A6F694271B4E85D30090FC94 /* Makefile.linux.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.linux.in; sourceTree = "<group>"; };
+		A6F694281B4E85D30090FC94 /* Makefile.osx.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = Makefile.osx.in; sourceTree = "<group>"; };
+		A6F694291B4E85D30090FC94 /* schrittmacherclient.pc.in */ = {isa = PBXFileReference; lastKnownFileType = text; path = schrittmacherclient.pc.in; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A65736941B14FE1B00854472 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6A98A041CBEAA3300211137 /* ulib.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A65736A01B14FE1B00854472 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A65736A41B14FE1B00854472 /* schrittmacherclient.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A657368E1B14FE1B00854472 = {
+			isa = PBXGroup;
+			children = (
+				A67598101B1C76FE0090FC94 /* VERSION */,
+				A67598121B1C77070090FC94 /* version.h */,
+				A6F693F21B4E83940090FC94 /* configure.in */,
+				A6F694271B4E85D30090FC94 /* Makefile.linux.in */,
+				A6F694281B4E85D30090FC94 /* Makefile.osx.in */,
+				A6F694291B4E85D30090FC94 /* schrittmacherclient.pc.in */,
+				A657369A1B14FE1B00854472 /* schrittmacherclient */,
+				A65736A71B14FE1B00854472 /* schrittmacherclientTests */,
+				A65736991B14FE1B00854472 /* Products */,
+				A6A98A021CBEAA1800211137 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A65736991B14FE1B00854472 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A65736981B14FE1B00854472 /* schrittmacherclient.framework */,
+				A65736A31B14FE1B00854472 /* schrittmacherclientTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A657369A1B14FE1B00854472 /* schrittmacherclient */ = {
+			isa = PBXGroup;
+			children = (
+				A628C8B31CB924A000211137 /* schrittmacherclient.h */,
+				A65736B41B14FE5700854472 /* UMSchrittmacherClient.h */,
+				A65736B51B14FE5700854472 /* UMSchrittmacherClient.m */,
+				A657369B1B14FE1B00854472 /* Supporting Files */,
+			);
+			path = schrittmacherclient;
+			sourceTree = "<group>";
+		};
+		A657369B1B14FE1B00854472 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A657369C1B14FE1B00854472 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A65736A71B14FE1B00854472 /* schrittmacherclientTests */ = {
+			isa = PBXGroup;
+			children = (
+				A65736AA1B14FE1B00854472 /* schrittmacherclientTests.m */,
+				A65736A81B14FE1B00854472 /* Supporting Files */,
+			);
+			path = schrittmacherclientTests;
+			sourceTree = "<group>";
+		};
+		A65736A81B14FE1B00854472 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A65736A91B14FE1B00854472 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A6A98A021CBEAA1800211137 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A6A98A031CBEAA3300211137 /* ulib.framework */,
+			);
+			name = Frameworks;
+			path = schrittmacherclient;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A65736951B14FE1B00854472 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A65736B61B14FE5700854472 /* UMSchrittmacherClient.h in Headers */,
+				A67598131B1C77070090FC94 /* version.h in Headers */,
+				A628C8B51CB924A000211137 /* schrittmacherclient.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A65736971B14FE1B00854472 /* schrittmacherclient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A65736AE1B14FE1B00854472 /* Build configuration list for PBXNativeTarget "schrittmacherclient" */;
+			buildPhases = (
+				A675980F1B1C76E00090FC94 /* ShellScript */,
+				A65736931B14FE1B00854472 /* Sources */,
+				A65736941B14FE1B00854472 /* Frameworks */,
+				A65736951B14FE1B00854472 /* Headers */,
+				A65736961B14FE1B00854472 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = schrittmacherclient;
+			productName = schrittmacherclient;
+			productReference = A65736981B14FE1B00854472 /* schrittmacherclient.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A65736A21B14FE1B00854472 /* schrittmacherclientTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A65736B11B14FE1B00854472 /* Build configuration list for PBXNativeTarget "schrittmacherclientTests" */;
+			buildPhases = (
+				A657369F1B14FE1B00854472 /* Sources */,
+				A65736A01B14FE1B00854472 /* Frameworks */,
+				A65736A11B14FE1B00854472 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A65736A61B14FE1B00854472 /* PBXTargetDependency */,
+			);
+			name = schrittmacherclientTests;
+			productName = schrittmacherclientTests;
+			productReference = A65736A31B14FE1B00854472 /* schrittmacherclientTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A657368F1B14FE1B00854472 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = "Andreas Fink";
+				TargetAttributes = {
+					A65736971B14FE1B00854472 = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 2GSNWPNR77;
+						ProvisioningStyle = Automatic;
+					};
+					A65736A21B14FE1B00854472 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
+				};
+			};
+			buildConfigurationList = A65736921B14FE1B00854472 /* Build configuration list for PBXProject "schrittmacherclient" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A657368E1B14FE1B00854472;
+			productRefGroup = A65736991B14FE1B00854472 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A65736971B14FE1B00854472 /* schrittmacherclient */,
+				A65736A21B14FE1B00854472 /* schrittmacherclientTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A65736961B14FE1B00854472 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A67598111B1C76FE0090FC94 /* VERSION in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A65736A11B14FE1B00854472 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A675980F1B1C76E00090FC94 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/VERSION",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/version.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -f version.h ]\nthen\nif [ VERSION -nt version.h ]\nthen\n./configure\nfi\nelse\n./configure\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A65736931B14FE1B00854472 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A65736B71B14FE5700854472 /* UMSchrittmacherClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A657369F1B14FE1B00854472 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A65736AB1B14FE1B00854472 /* schrittmacherclientTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A65736A61B14FE1B00854472 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A65736971B14FE1B00854472 /* schrittmacherclient */;
+			targetProxy = A65736A51B14FE1B00854472 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A65736AC1B14FE1B00854472 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A65736AD1B14FE1B00854472 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A65736AF1B14FE1B00854472 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = /;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = schrittmacherclient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = me.fink.schrittmacherclient;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Debug;
+		};
+		A65736B01B14FE1B00854472 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = /;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = schrittmacherclient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = me.fink.schrittmacherclient;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
+				STRIP_INSTALLED_PRODUCT = NO;
+			};
+			name = Release;
+		};
+		A65736B21B14FE1B00854472 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = schrittmacherclientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.messagemover.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A65736B31B14FE1B00854472 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = schrittmacherclientTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.messagemover.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A65736921B14FE1B00854472 /* Build configuration list for PBXProject "schrittmacherclient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A65736AC1B14FE1B00854472 /* Debug */,
+				A65736AD1B14FE1B00854472 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A65736AE1B14FE1B00854472 /* Build configuration list for PBXNativeTarget "schrittmacherclient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A65736AF1B14FE1B00854472 /* Debug */,
+				A65736B01B14FE1B00854472 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A65736B11B14FE1B00854472 /* Build configuration list for PBXNativeTarget "schrittmacherclientTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A65736B21B14FE1B00854472 /* Debug */,
+				A65736B31B14FE1B00854472 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A657368F1B14FE1B00854472 /* Project object */;
+}
