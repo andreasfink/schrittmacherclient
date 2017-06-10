@@ -6,7 +6,7 @@ libdir=${exec_prefix}/lib
 includedir=${prefix}/include
 
 Cflags: -I${includedir}
-Libs: -L${libdir} -lschrittmacherclient -lbsd
+Libs: -L${libdir} -l:libschrittmacherclient.@SHARED_LIBRARY_EXTENSION@.@MAJORVER@.@MINORVER@ -lbsd
 
 Name: schrittmacherclient
 Description: client library for schrittmacher
