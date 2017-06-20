@@ -2001,7 +2001,7 @@ case "$host" in
 	CC=clang
 	CXX=clang++
 	CFLAGS="$CFLAGS -std=c99 -fPIC -DLINUX -D_XOPEN_SOURCE=700 -D_POSIX_SOURCE"
-    CFLAGS="${CFLAGS} -DLINUX=1 -DHAVE_LIBSSL=1 -D_XOPEN_SOURCE=700"
+    CFLAGS="${CFLAGS} -DLINUX=1 -D_XOPEN_SOURCE=700"
 	DEBIAN_VERSION=`cat /etc/debian_version | cut -f1 -d.`
 	if [ "$DEBIAN_VERSION" == "8" ]
 	then
