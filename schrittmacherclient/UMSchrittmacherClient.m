@@ -41,7 +41,7 @@
     else
     {
         uc = [[UMSocket alloc]initWithType:UMSOCKET_TYPE_UDP4ONLY];
-        uc.objectStatisticName = @"UMSocket(schrittmacher-client-ipv4-only)";
+        uc.objectStatisticsName = @"UMSocket(schrittmacher-client-ipv4-only)";
     }
     uc.localHost =  localHost;
     uc.localPort = 0;
