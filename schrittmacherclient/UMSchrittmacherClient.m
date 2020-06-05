@@ -60,7 +60,7 @@
     {
         @throw([NSException exceptionWithName:@"INV_RES_ID" reason:@"Schrittmacher resource-id is not set" userInfo:NULL]);
     }
-    if(resourceId==NULL)
+    if(status==NULL)
     {
         @throw([NSException exceptionWithName:@"INV_DATA" reason:@"Schrittmacher invalid status requested" userInfo:NULL]);
     }
