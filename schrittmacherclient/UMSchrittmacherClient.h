@@ -15,11 +15,11 @@
 
 @interface SchrittmacherClient : UMObject
 {
-    NSString *resourceId;
-    int port;
-    int addressType;
-    UMSocket *uc;
-    UMHost *localHost;
+    NSString    *resourceId;
+    int         port;
+    int         addressType;
+    UMSocket    *uc;
+    UMHost      *localHost;
 }
 
 @property(readwrite,strong)     NSString *resourceId;
