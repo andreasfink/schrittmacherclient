@@ -20,38 +20,39 @@
     self = [super init];
     if(self)
     {
-        addressType = 4;
-        localHost = [[UMHost alloc]initWithAddress:@"127.0.0.1"];
-        port = 7700; /* default port */
+        _addressType = 4;
+        _localHost = [[UMHost alloc]initWithAddress:@"127.0.0.1"];
+        _port = 7700; /* default port */
+        _max_transiting_counter = 30;
     }
     return self;
 }
 
 - (void)start
 {
-    if(uc)
+    if(_uc)
     {
         [self stop];
     }
-    if(addressType==6)
+    if(_addressType==6)
     {
-        uc = [[UMSocket alloc]initWithType:UMSOCKET_TYPE_UDP6ONLY];
-        uc.objectStatisticsName = @"UMSocket(schrittmacher-client)";
+        _uc = [[UMSocket alloc]initWithType:UMSOCKET_TYPE_UDP6ONLY];
+        _uc.objectStatisticsName = @"UMSocket(schrittmacher-client)";
     }
     else
     {
-        uc = [[UMSocket alloc]initWithType:UMSOCKET_TYPE_UDP4ONLY];
-        uc.objectStatisticsName = @"UMSocket(schrittmacher-client-ipv4-only)";
+        _uc = [[UMSocket alloc]initWithType:UMSOCKET_TYPE_UDP4ONLY];
+        _uc.objectStatisticsName = @"UMSocket(schrittmacher-client-ipv4-only)";
     }
-    uc.localHost =  localHost;
-    uc.localPort = 0;
-    uc.RemoteHost = localHost;
+    _uc.localHost =  _localHost;
+    _uc.localPort = 0;
+    _uc.RemoteHost = _localHost;
 }
 
 - (void) stop
 {
-    [uc close];
-    uc = NULL;
+    [_uc close];
+    _uc = NULL;
 }
 
 - (void)sendStatus:(NSString *)status
@@ -75,7 +76,7 @@
     const char *utf8 = msg.UTF8String;
     size_t len = strlen(utf8);
     NSData *d = [NSData dataWithBytes:utf8 length:len];
-    UMSocketError e = [uc sendData:d toAddress:@"127.0.0.1" toPort:port];
+    UMSocketError e = [_uc sendData:d toAddress:@"127.0.0.1" toPort:port];
     if(e)
     {
         NSString *s = [UMSocket getSocketErrorString:e];
@@ -102,6 +103,60 @@
 -(void)notifyFailure
 {
     [self sendStatus:MESSAGE_LOCAL_FAIL];
+}
+
+
+- (void)signalGoHot
+{
+    _wantedState = SchrittmacherClientWantedState_active;
+    if(_go_hot_func)
+    {
+        (*_go_hot_func)();
+    }
+}
+
+- (void)signalGoStandby
+{
+    _wantedState = SchrittmacherClientWantedState_inactive;
+    if(_go_standby_func)
+    {
+        (*_go_standby_func)();
+    }
+}
+
+- (void)doHeartbeat
+{
+    switch(_currentState)
+    {
+        case SchrittmacherClientCurrentState_active:
+            [self sendStatus:MESSAGE_LOCAL_HOT];
+            _transiting_counter = 0;
+            break;
+            
+        case SchrittmacherClientCurrentState_inactive:
+            [self sendStatus:MESSAGE_LOCAL_STANDBY];
+            _transiting_counter = 0;
+            break;
+
+        case SchrittmacherClientCurrentState_failed:
+            [self sendStatus:MESSAGE_LOCAL_FAIL];
+            _transiting_counter = 0;
+            break;
+        case SchrittmacherClientCurrentState_unknown:
+            [self sendStatus:MESSAGE_LOCAL_UNKNOWN];
+            _transiting_counter = 0;
+            break;
+        case SchrittmacherClientCurrentState_transiting_to_hot:
+        case  SchrittmacherClientCurrentState_transiting_to_standby:
+            _transiting_counter++;
+            if(_transiting_counter > _max_transiting_counter)
+            {
+                _currentState = SchrittmacherClientCurrentState_failed;
+                [self sendStatus:MESSAGE_LOCAL_FAIL];
+                _transiting_counter=0;
+            }
+            break;
+    }
 }
 
 @end
