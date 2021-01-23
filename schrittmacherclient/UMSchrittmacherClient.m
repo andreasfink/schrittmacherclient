@@ -109,32 +109,57 @@
 
 - (void)reportTransitingToHot
 {
+#if defined(SCHRITTMACHER_DEBUG)
+    fprintf(stderr,"SchrittmacherClient: reportTransitingToHot\n");
+    fflush(stderr);
+#endif
     _currentState = SchrittmacherClientCurrentState_transiting_to_hot;
 }
 
 - (void)reportTransitingToStandby
 {
+#if defined(SCHRITTMACHER_DEBUG)
+    fprintf(stderr,"SchrittmacherClient: reportTransitingToStandby\n");
+    fflush(stderr);
+#endif
     _currentState = SchrittmacherClientCurrentState_transiting_to_standby;
 }
 
 - (void)reportUnknown
 {
+#if defined(SCHRITTMACHER_DEBUG)
+    fprintf(stderr,"SchrittmacherClient: reportUnknown\n");
+    fflush(stderr);
+#endif
     _currentState = SchrittmacherClientCurrentState_unknown;
 }
 
 
 - (void)reportActive
 {
+#if defined(SCHRITTMACHER_DEBUG)
+    fprintf(stderr,"SchrittmacherClient: reportActive\n");
+    fflush(stderr);
+#endif
+
     _currentState = SchrittmacherClientCurrentState_active;
 }
 
 - (void)reportInactive
 {
+#if defined(SCHRITTMACHER_DEBUG)
+    fprintf(stderr,"SchrittmacherClient: reportInactive\n");
+    fflush(stderr);
+#endif
     _currentState = SchrittmacherClientCurrentState_inactive;
 }
 
 - (void)reportFailed:(NSString *)failureReason
 {
+#if defined(SCHRITTMACHER_DEBUG)
+    fprintf(stderr,"SchrittmacherClient: reportFailure:%s\n",failureReason.UTF8String);
+    fflush(stderr);
+#endif
     _failureReason = failureReason;
     [self sendStatus:MESSAGE_LOCAL_FAIL];
     _currentState = SchrittmacherClientCurrentState_failed;
@@ -151,6 +176,12 @@
     {
         return;
     }
+    
+#if defined(SCHRITTMACHER_DEBUG)
+    fprintf(stderr,"SchrittmacherClient: signalGoHot - > new state: transiting_to_hot\n");
+    fflush(stderr);
+#endif
+
     _currentState = SchrittmacherClientCurrentState_transiting_to_hot;
     if(_go_hot_func)
     {
@@ -171,6 +202,10 @@
         return;
     }
     
+#if defined(SCHRITTMACHER_DEBUG)
+    fprintf(stderr,"SchrittmacherClient: signalGoHot - > new state: transiting_to_standby\n");
+    fflush(stderr);
+#endif
     _currentState = SchrittmacherClientCurrentState_transiting_to_standby;
     if(_go_standby_func)
     {
@@ -183,28 +218,52 @@
     switch(_currentState)
     {
         case SchrittmacherClientCurrentState_active:
+#if defined(SCHRITTMACHER_DEBUG)
+            fprintf(stderr,"SchrittmacherClient: heartbeat: hot\n");
+            fflush(stderr);
+#endif
             [self sendStatus:MESSAGE_LOCAL_HOT];
             _transiting_counter = 0;
             break;
             
         case SchrittmacherClientCurrentState_inactive:
+#if defined(SCHRITTMACHER_DEBUG)
+            fprintf(stderr,"SchrittmacherClient: heartbeat: standby\n");
+            fflush(stderr);
+#endif
             [self sendStatus:MESSAGE_LOCAL_STANDBY];
             _transiting_counter = 0;
             break;
 
         case SchrittmacherClientCurrentState_failed:
+#if defined(SCHRITTMACHER_DEBUG)
+            fprintf(stderr,"SchrittmacherClient: heartbeat: fail\n");
+            fflush(stderr);
+#endif
             [self sendStatus:MESSAGE_LOCAL_FAIL];
             _transiting_counter = 0;
             break;
         case SchrittmacherClientCurrentState_unknown:
+#if defined(SCHRITTMACHER_DEBUG)
+            fprintf(stderr,"SchrittmacherClient: heartbeat: unknown\n");
+            fflush(stderr);
+#endif
             [self sendStatus:MESSAGE_LOCAL_UNKNOWN];
             _transiting_counter = 0;
             break;
         case SchrittmacherClientCurrentState_transiting_to_hot:
         case  SchrittmacherClientCurrentState_transiting_to_standby:
+#if defined(SCHRITTMACHER_DEBUG)
+            fprintf(stderr,"SchrittmacherClient: heartbeat: transiting (counter = %d)\n",_transiting_counter);
+            fflush(stderr);
+#endif
             _transiting_counter++;
             if(_transiting_counter > _max_transiting_counter)
             {
+#if defined(SCHRITTMACHER_DEBUG)
+                fprintf(stderr,"SchrittmacherClient: heartbeat: max transiting counter  %d reached. reporting failed\n",_max_transiting_counter);
+                fflush(stderr);
+#endif
                 _currentState = SchrittmacherClientCurrentState_failed;
                 [self sendStatus:MESSAGE_LOCAL_FAIL];
                 _transiting_counter=0;
