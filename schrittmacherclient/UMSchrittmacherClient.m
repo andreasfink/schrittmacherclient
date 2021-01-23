@@ -203,7 +203,7 @@
     }
     
 #if defined(SCHRITTMACHERCLIENT_DEBUG)
-    fprintf(stderr,"SchrittmacherClient: signalGoHot - > new state: transiting_to_standby\n");
+    fprintf(stderr,"SchrittmacherClient: signalGoStandby - > new state: transiting_to_standby\n");
     fflush(stderr);
 #endif
     _currentState = SchrittmacherClientCurrentState_transiting_to_standby;
