@@ -106,9 +106,52 @@
 }
 
 
+
+- (void)reportTransitingToHot
+{
+    _currentState = SchrittmacherClientCurrentState_transiting_to_hot;
+}
+
+- (void)reportTransitingToStandby
+{
+    _currentState = SchrittmacherClientCurrentState_transiting_to_standby;
+}
+
+- (void)reportUnknown
+{
+    _currentState = SchrittmacherClientCurrentState_unknown;
+}
+
+
+- (void)reportActive
+{
+    _currentState = SchrittmacherClientCurrentState_active;
+}
+
+- (void)reportInactive
+{
+    _currentState = SchrittmacherClientCurrentState_inactive;
+}
+
+- (void)reportFailed:(NSString *)failureReason
+{
+    _failureReason = failureReason;
+    [self sendStatus:MESSAGE_LOCAL_FAIL];
+    _currentState = SchrittmacherClientCurrentState_failed;
+}
+
 - (void)signalGoHot
 {
     _wantedState = SchrittmacherClientWantedState_active;
+    if(_currentState == SchrittmacherClientCurrentState_active)
+    {
+        return;
+    }
+    if(_currentState == SchrittmacherClientCurrentState_transiting_to_hot)
+    {
+        return;
+    }
+    _currentState = SchrittmacherClientCurrentState_transiting_to_hot;
     if(_go_hot_func)
     {
         (*_go_hot_func)();
@@ -118,6 +161,17 @@
 - (void)signalGoStandby
 {
     _wantedState = SchrittmacherClientWantedState_inactive;
+    if(_currentState == SchrittmacherClientWantedState_inactive)
+    {
+        return;
+    }
+
+    if(_currentState == SchrittmacherClientCurrentState_transiting_to_standby)
+    {
+        return;
+    }
+    
+    _currentState = SchrittmacherClientCurrentState_transiting_to_standby;
     if(_go_standby_func)
     {
         (*_go_standby_func)();

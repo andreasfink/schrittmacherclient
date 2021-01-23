@@ -45,6 +45,7 @@ typedef void (*schrittmacher_func_ptr)(void);
     schrittmacher_func_ptr          _go_standby_func;
     int                             _max_transiting_counter;
     int                             _transiting_counter;
+    NSString                        *_failureReason;
 }
 
 @property(readwrite,strong)     NSString *resourceId;
@@ -57,17 +58,26 @@ typedef void (*schrittmacher_func_ptr)(void);
 @property(readwrite,assign)     schrittmacher_func_ptr          go_standby_func;
 @property(readwrite,assign)     int max_transiting_counter;
 @property(readwrite,assign)     int transiting_counter;
+@property(readwrite,strong)     NSString                        *failureReason;
 
-- (void)heartbeatHot;
-- (void)heartbeatStandby;
-- (void)heartbeatUnknown;
-- (void)notifyFailure;
+- (void)reportActive;
+- (void)reportInactive;
+- (void)reportFailed:(NSString *)failureReason;
+- (void)reportTransitingToHot;
+- (void)reportTransitingToStandby;
+- (void)reportUnknown;
 - (void)start;
 - (void)stop;
-- (void)sendStatus:(NSString *)status;
 - (void)signalGoHot;
 - (void)signalGoStandby;
 - (void)doHeartbeat;
+
+//- (void)heartbeatHot;
+//- (void)heartbeatStandby;
+//- (void)heartbeatUnknown;
+//- (void)notifyFailure;
+//- (void)sendStatus:(NSString *)status;
+
 
 @end
 
