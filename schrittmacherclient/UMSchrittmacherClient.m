@@ -84,28 +84,6 @@
     }
 }
 
-- (void)heartbeatHot
-{
-    [self sendStatus:MESSAGE_LOCAL_HOT];
-}
-
-- (void)heartbeatStandby
-{
-    [self sendStatus:MESSAGE_LOCAL_STANDBY];
-}
-
-- (void)heartbeatUnknown
-{
-    [self sendStatus:MESSAGE_LOCAL_UNKNOWN];
-}
-
-
--(void)notifyFailure
-{
-    [self sendStatus:MESSAGE_LOCAL_FAIL];
-}
-
-
 
 - (void)reportTransitingToHot
 {
@@ -114,6 +92,7 @@
     fflush(stderr);
 #endif
     _currentState = SchrittmacherClientCurrentState_transiting_to_hot;
+    [self doHeartbeat];
 }
 
 - (void)reportTransitingToStandby
@@ -123,6 +102,7 @@
     fflush(stderr);
 #endif
     _currentState = SchrittmacherClientCurrentState_transiting_to_standby;
+    [self doHeartbeat];
 }
 
 - (void)reportUnknown
@@ -132,6 +112,7 @@
     fflush(stderr);
 #endif
     _currentState = SchrittmacherClientCurrentState_unknown;
+    [self doHeartbeat];
 }
 
 
@@ -143,6 +124,7 @@
 #endif
 
     _currentState = SchrittmacherClientCurrentState_active;
+    [self doHeartbeat];
 }
 
 - (void)reportInactive
@@ -152,6 +134,7 @@
     fflush(stderr);
 #endif
     _currentState = SchrittmacherClientCurrentState_inactive;
+    [self doHeartbeat];
 }
 
 - (void)reportFailed:(NSString *)failureReason
@@ -163,6 +146,7 @@
     _failureReason = failureReason;
     [self sendStatus:MESSAGE_LOCAL_FAIL];
     _currentState = SchrittmacherClientCurrentState_failed;
+    [self doHeartbeat];
 }
 
 - (void)signalGoHot
@@ -252,21 +236,39 @@
             _transiting_counter = 0;
             break;
         case SchrittmacherClientCurrentState_transiting_to_hot:
-        case  SchrittmacherClientCurrentState_transiting_to_standby:
 #if defined(SCHRITTMACHERCLIENT_DEBUG)
-            fprintf(stderr,"SchrittmacherClient: heartbeat: transiting (counter = %d)\n",_transiting_counter);
+            fprintf(stderr,"SchrittmacherClient: heartbeat: transitingToHot\n");
+            fflush(stderr);
+#endif
+            
+            _transiting_counter++;
+            if(_transiting_counter > _max_transiting_counter)
+            {
+                _currentState = SchrittmacherClientCurrentState_failed;
+                [self sendStatus:MESSAGE_LOCAL_FAIL];
+                _transiting_counter=0;
+            }
+            else
+            {
+                [self sendStatus:MESSAGE_LOCAL_TRANSITING_TO_HOT];
+            }
+            break;
+
+        case SchrittmacherClientCurrentState_transiting_to_standby:
+#if defined(SCHRITTMACHERCLIENT_DEBUG)
+            fprintf(stderr,"SchrittmacherClient: heartbeat: transitingToStandby\n");
             fflush(stderr);
 #endif
             _transiting_counter++;
             if(_transiting_counter > _max_transiting_counter)
             {
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-                fprintf(stderr,"SchrittmacherClient: heartbeat: max transiting counter  %d reached. reporting failed\n",_max_transiting_counter);
-                fflush(stderr);
-#endif
                 _currentState = SchrittmacherClientCurrentState_failed;
                 [self sendStatus:MESSAGE_LOCAL_FAIL];
                 _transiting_counter=0;
+            }
+            else
+            {
+                [self sendStatus:MESSAGE_LOCAL_TRANSITING_TO_STANDBY];
             }
             break;
     }

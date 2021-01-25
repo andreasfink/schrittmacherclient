@@ -8,10 +8,12 @@
 
 #import <ulib/ulib.h>
 
-#define MESSAGE_LOCAL_HOT           @"LHOT"
-#define MESSAGE_LOCAL_STANDBY       @"LSBY"
-#define MESSAGE_LOCAL_UNKNOWN       @"LUNK"
-#define MESSAGE_LOCAL_FAIL          @"LFAI"
+#define MESSAGE_LOCAL_HOT                   @"LHOT"
+#define MESSAGE_LOCAL_STANDBY               @"LSBY"
+#define MESSAGE_LOCAL_UNKNOWN               @"LUNK"
+#define MESSAGE_LOCAL_FAIL                  @"LFAI"
+#define MESSAGE_LOCAL_TRANSITING_TO_HOT     @"L2HT"
+#define MESSAGE_LOCAL_TRANSITING_TO_STANDBY @"L2SB"
 
 typedef enum SchrittmacherClientWantedState
 {
@@ -72,12 +74,7 @@ typedef void (*schrittmacher_func_ptr)(void);
 - (void)signalGoStandby;
 - (void)doHeartbeat;
 
-//- (void)heartbeatHot;
-//- (void)heartbeatStandby;
-//- (void)heartbeatUnknown;
-//- (void)notifyFailure;
 //- (void)sendStatus:(NSString *)status;
-
 
 @end
 
