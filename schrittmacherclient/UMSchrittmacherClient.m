@@ -227,6 +227,7 @@
             [self sendStatus:MESSAGE_LOCAL_FAIL];
             _transiting_counter = 0;
             break;
+            
         case SchrittmacherClientCurrentState_unknown:
 #if defined(SCHRITTMACHERCLIENT_DEBUG)
             fprintf(stderr,"SchrittmacherClient: heartbeat: unknown\n");
