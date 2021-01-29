@@ -48,6 +48,8 @@ typedef void (*schrittmacher_func_ptr)(void);
     int                             _max_transiting_counter;
     int                             _transiting_counter;
     NSString                        *_failureReason;
+    BOOL                            _loggingEnabled;
+    UMLogLevel                      _logLevel;
 }
 
 @property(readwrite,strong)     NSString *resourceId;
@@ -61,6 +63,8 @@ typedef void (*schrittmacher_func_ptr)(void);
 @property(readwrite,assign)     int max_transiting_counter;
 @property(readwrite,assign)     int transiting_counter;
 @property(readwrite,strong)     NSString                        *failureReason;
+@property(readwrite,assign)     BOOL                            _loggingEnabled;
+@property(readwrite,assign)     UMLogLevel                      _logLevel;
 
 - (void)reportActive;
 - (void)reportInactive;
@@ -73,6 +77,7 @@ typedef void (*schrittmacher_func_ptr)(void);
 - (void)signalGoHot;
 - (void)signalGoStandby;
 - (void)doHeartbeat;
+- (void)log:(NSString *)n;
 
 //- (void)sendStatus:(NSString *)status;
 

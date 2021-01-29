@@ -275,5 +275,14 @@
     }
 }
 
+- (void)log:(NSString *)n
+{
+    if(_loggingEnabled == NO)
+    {
+        return;
+    }
+    [_logFeed infoText:n];
+}
+
 @end
 
