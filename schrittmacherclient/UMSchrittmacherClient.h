@@ -63,8 +63,8 @@ typedef void (*schrittmacher_func_ptr)(void);
 @property(readwrite,assign)     int max_transiting_counter;
 @property(readwrite,assign)     int transiting_counter;
 @property(readwrite,strong)     NSString                        *failureReason;
-@property(readwrite,assign)     BOOL                            _loggingEnabled;
-@property(readwrite,assign)     UMLogLevel                      _logLevel;
+@property(readwrite,assign)     BOOL                            loggingEnabled;
+@property(readwrite,assign)     UMLogLevel                      logLevel;
 
 - (void)reportActive;
 - (void)reportInactive;
