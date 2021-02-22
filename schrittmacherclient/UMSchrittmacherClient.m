@@ -11,10 +11,6 @@
 
 @implementation SchrittmacherClient
 
-@synthesize resourceId;
-@synthesize port;
-@synthesize addressType;
-
 - (SchrittmacherClient *)init
 {
     self = [super init];

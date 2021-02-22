@@ -54,8 +54,8 @@ typedef void (*schrittmacher_func_ptr)(void);
 
 @property(readwrite,strong)     NSString *resourceId;
 @property(readwrite,assign)     int port;
-@property(readwrite,strong)     id  delegate;
 @property(readwrite,assign)     int addressType;
+@property(readwrite,strong)     id  delegate;
 @property(readwrite,assign)     SchrittmacherClientWantedState  wantedState;
 @property(readwrite,assign)     SchrittmacherClientCurrentState currentState;
 @property(readwrite,assign)     schrittmacher_func_ptr          go_hot_func;
