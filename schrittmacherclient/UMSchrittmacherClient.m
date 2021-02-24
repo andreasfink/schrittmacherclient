@@ -53,7 +53,7 @@
 
 - (void)sendStatus:(NSString *)status
 {
-    if(resourceId==NULL)
+    if(_resourceId==NULL)
     {
         @throw([NSException exceptionWithName:@"INV_RES_ID" reason:@"Schrittmacher resource-id is not set" userInfo:NULL]);
     }
@@ -72,7 +72,7 @@
     const char *utf8 = msg.UTF8String;
     size_t len = strlen(utf8);
     NSData *d = [NSData dataWithBytes:utf8 length:len];
-    UMSocketError e = [_uc sendData:d toAddress:@"127.0.0.1" toPort:port];
+    UMSocketError e = [_uc sendData:d toAddress:@"127.0.0.1" toPort:_port];
     if(e)
     {
         NSString *s = [UMSocket getSocketErrorString:e];
