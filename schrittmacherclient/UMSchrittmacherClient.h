@@ -43,6 +43,7 @@ typedef void (*schrittmacher_func_ptr)(void);
     int                             _addressType;
     UMSocket                        *_uc;
     UMHost                          *_localHost;
+    NSString                        *_daemonAddress;
     SchrittmacherClientWantedState  _wantedState;
     SchrittmacherClientCurrentState _currentState;
     schrittmacher_func_ptr          _go_hot_func;
@@ -53,6 +54,8 @@ typedef void (*schrittmacher_func_ptr)(void);
     BOOL                            _loggingEnabled;
     UMLogLevel                      _logLevel;
 }
+
+@property(readwrite,strong)     NSString *daemonAddress;
 
 @property(readwrite,strong)     NSString *resourceId;
 @property(readwrite,assign)     int port;

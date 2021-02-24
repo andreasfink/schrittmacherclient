@@ -77,7 +77,16 @@
     const char *utf8 = msg.UTF8String;
     size_t len = strlen(utf8);
     NSData *d = [NSData dataWithBytes:utf8 length:len];
-    UMSocketError e = [_uc sendData:d toAddress:@"127.0.0.1" toPort:_port];
+    NSString *addr;
+    if(_daemonAddress)
+    {
+        addr = _daemonAddress;
+    }
+    else
+    {
+        addr = @"127.0.0.1";
+    }
+    UMSocketError e = [_uc sendData:d toAddress:addr toPort:_port];
     if(e)
     {
         NSString *s = [UMSocket getSocketErrorString:e];
