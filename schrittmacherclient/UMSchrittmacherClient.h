@@ -83,10 +83,6 @@ typedef void (*schrittmacher_func_ptr)(void);
 - (void)requestTakeover;
 - (void)requestFailover;
 
-#define MESSAGE_LOCAL_REQUEST_FAILOVER      @"LRFO"
-#define MESSAGE_LOCAL_REQUEST_TAKEOVER      @"LRTO"
-
-
 //- (void)sendStatus:(NSString *)status;
 
 @end

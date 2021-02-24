@@ -18,7 +18,7 @@
     {
         _addressType = 4;
         _localHost = [[UMHost alloc]initWithAddress:@"127.0.0.1"];
-        _port = 7700; /* default port */
+        _port = 7701; /* default port */
         _max_transiting_counter = 30;
     }
     return self;
@@ -53,6 +53,11 @@
 
 - (void)sendStatus:(NSString *)status
 {
+    if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
+    {
+        [_logFeed debugText:[NSString stringWithFormat:@"SchrittmacherClient: sending status %@",status]];
+    }
+
     if(_resourceId==NULL)
     {
         @throw([NSException exceptionWithName:@"INV_RES_ID" reason:@"Schrittmacher resource-id is not set" userInfo:NULL]);
@@ -83,30 +88,30 @@
 
 - (void)reportTransitingToHot
 {
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-    fprintf(stderr,"SchrittmacherClient: reportTransitingToHot\n");
-    fflush(stderr);
-#endif
+    if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
+    {
+        [_logFeed debugText:@"SchrittmacherClient: reportTransitingToHot"];
+    }
     _currentState = SchrittmacherClientCurrentState_transiting_to_hot;
     [self doHeartbeat];
 }
 
 - (void)reportTransitingToStandby
 {
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-    fprintf(stderr,"SchrittmacherClient: reportTransitingToStandby\n");
-    fflush(stderr);
-#endif
+    if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
+    {
+        [_logFeed debugText:@"SchrittmacherClient: reportTransitingToStandby"];
+    }
     _currentState = SchrittmacherClientCurrentState_transiting_to_standby;
     [self doHeartbeat];
 }
 
 - (void)reportUnknown
 {
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-    fprintf(stderr,"SchrittmacherClient: reportUnknown\n");
-    fflush(stderr);
-#endif
+    if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
+    {
+        [_logFeed debugText:@"SchrittmacherClient: reportUnknown"];
+    }
     _currentState = SchrittmacherClientCurrentState_unknown;
     [self doHeartbeat];
 }
@@ -114,32 +119,31 @@
 
 - (void)reportActive
 {
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-    fprintf(stderr,"SchrittmacherClient: reportActive\n");
-    fflush(stderr);
-#endif
-
+    if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
+    {
+        [_logFeed debugText:@"SchrittmacherClient: reportActive"];
+    }
     _currentState = SchrittmacherClientCurrentState_active;
     [self doHeartbeat];
 }
 
 - (void)reportInactive
 {
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-    fprintf(stderr,"SchrittmacherClient: reportInactive\n");
-    fflush(stderr);
-#endif
+    if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
+    {
+        [_logFeed debugText:@"SchrittmacherClient: reportInactive"];
+    }
     _currentState = SchrittmacherClientCurrentState_inactive;
     [self doHeartbeat];
 }
 
 - (void)reportFailed:(NSString *)failureReason
 {
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-    fprintf(stderr,"SchrittmacherClient: reportFailure:%s\n",failureReason.UTF8String);
-    fflush(stderr);
-#endif
-    _failureReason = failureReason;
+    if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
+    {
+        NSString *s = [NSString stringWithFormat:@"SchrittmacherClient: reportFailed:%@",failureReason];
+        [_logFeed debugText:s];
+    }
     [self sendStatus:MESSAGE_LOCAL_FAIL];
     _currentState = SchrittmacherClientCurrentState_failed;
     [self doHeartbeat];
@@ -156,12 +160,10 @@
     {
         return;
     }
-    
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-    fprintf(stderr,"SchrittmacherClient: signalGoHot - > new state: transiting_to_hot\n");
-    fflush(stderr);
-#endif
-
+    if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
+    {
+        [_logFeed debugText:@"SchrittmacherClient: signalGoHot - > new state: transiting_to_hot"];
+    }
     _currentState = SchrittmacherClientCurrentState_transiting_to_hot;
     if(_go_hot_func)
     {
@@ -181,11 +183,10 @@
     {
         return;
     }
-    
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-    fprintf(stderr,"SchrittmacherClient: signalGoStandby - > new state: transiting_to_standby\n");
-    fflush(stderr);
-#endif
+    if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
+    {
+        [_logFeed debugText:@"SchrittmacherClient: signalGoStandby - > new state: transiting_to_standby"];
+    }
     _currentState = SchrittmacherClientCurrentState_transiting_to_standby;
     if(_go_standby_func)
     {
@@ -198,46 +199,25 @@
     switch(_currentState)
     {
         case SchrittmacherClientCurrentState_active:
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-            fprintf(stderr,"SchrittmacherClient: heartbeat: hot\n");
-            fflush(stderr);
-#endif
             [self sendStatus:MESSAGE_LOCAL_HOT];
             _transiting_counter = 0;
             break;
             
         case SchrittmacherClientCurrentState_inactive:
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-            fprintf(stderr,"SchrittmacherClient: heartbeat: standby\n");
-            fflush(stderr);
-#endif
             [self sendStatus:MESSAGE_LOCAL_STANDBY];
             _transiting_counter = 0;
             break;
 
         case SchrittmacherClientCurrentState_failed:
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-            fprintf(stderr,"SchrittmacherClient: heartbeat: fail\n");
-            fflush(stderr);
-#endif
             [self sendStatus:MESSAGE_LOCAL_FAIL];
             _transiting_counter = 0;
             break;
             
         case SchrittmacherClientCurrentState_unknown:
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-            fprintf(stderr,"SchrittmacherClient: heartbeat: unknown\n");
-            fflush(stderr);
-#endif
             [self sendStatus:MESSAGE_LOCAL_UNKNOWN];
             _transiting_counter = 0;
             break;
         case SchrittmacherClientCurrentState_transiting_to_hot:
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-            fprintf(stderr,"SchrittmacherClient: heartbeat: transitingToHot\n");
-            fflush(stderr);
-#endif
-            
             _transiting_counter++;
             if(_transiting_counter > _max_transiting_counter)
             {
@@ -252,10 +232,6 @@
             break;
 
         case SchrittmacherClientCurrentState_transiting_to_standby:
-#if defined(SCHRITTMACHERCLIENT_DEBUG)
-            fprintf(stderr,"SchrittmacherClient: heartbeat: transitingToStandby\n");
-            fflush(stderr);
-#endif
             _transiting_counter++;
             if(_transiting_counter > _max_transiting_counter)
             {
