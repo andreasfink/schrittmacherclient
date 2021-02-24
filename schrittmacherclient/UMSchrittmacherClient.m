@@ -147,7 +147,7 @@
 
 - (void)signalGoHot
 {
-    _wantedState = SchrittmacherClientWantedState_active;
+    _wantedState = SchrittmacherClientWantedState_hot;
     if(_currentState == SchrittmacherClientCurrentState_active)
     {
         return;
@@ -171,8 +171,8 @@
 
 - (void)signalGoStandby
 {
-    _wantedState = SchrittmacherClientWantedState_inactive;
-    if(_currentState == SchrittmacherClientWantedState_inactive)
+    _wantedState = SchrittmacherClientWantedState_standby;
+    if(_currentState == SchrittmacherClientCurrentState_inactive)
     {
         return;
     }
