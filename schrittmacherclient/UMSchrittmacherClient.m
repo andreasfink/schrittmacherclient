@@ -271,6 +271,16 @@
     }
 }
 
+- (void)requestTakeover
+{
+    [self sendStatus:MESSAGE_LOCAL_REQUEST_TAKEOVER];
+}
+
+- (void)requestFailover
+{
+    [self sendStatus:MESSAGE_LOCAL_REQUEST_FAILOVER];
+}
+
 - (void)log:(NSString *)n
 {
     if(_loggingEnabled == NO)

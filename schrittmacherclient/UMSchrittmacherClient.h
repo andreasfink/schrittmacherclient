@@ -14,6 +14,8 @@
 #define MESSAGE_LOCAL_FAIL                  @"LFAI"
 #define MESSAGE_LOCAL_TRANSITING_TO_HOT     @"L2HT"
 #define MESSAGE_LOCAL_TRANSITING_TO_STANDBY @"L2SB"
+#define MESSAGE_LOCAL_REQUEST_FAILOVER      @"LRFO"
+#define MESSAGE_LOCAL_REQUEST_TAKEOVER      @"LRTO"
 
 typedef enum SchrittmacherClientWantedState
 {
@@ -78,6 +80,12 @@ typedef void (*schrittmacher_func_ptr)(void);
 - (void)signalGoStandby;
 - (void)doHeartbeat;
 - (void)log:(NSString *)n;
+- (void)requestTakeover;
+- (void)requestFailover;
+
+#define MESSAGE_LOCAL_REQUEST_FAILOVER      @"LRFO"
+#define MESSAGE_LOCAL_REQUEST_TAKEOVER      @"LRTO"
+
 
 //- (void)sendStatus:(NSString *)status;
 
