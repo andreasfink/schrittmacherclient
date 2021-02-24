@@ -17,8 +17,8 @@
 
 typedef enum SchrittmacherClientWantedState
 {
-    SchrittmacherClientWantedState_inactive,
-    SchrittmacherClientWantedState_active,
+    SchrittmacherClientWantedState_hot,
+    SchrittmacherClientWantedState_standby,
 } SchrittmacherClientWantedState;
 
 typedef enum SchrittmacherClientCurrentState
