@@ -178,6 +178,10 @@
     {
         (*_go_hot_func)();
     }
+    else
+    {
+        [_logFeed majorErrorText:@"SchrittmacherClient: _go_hot_func is NULL"];
+    }
 }
 
 - (void)signalGoStandby
@@ -200,6 +204,10 @@
     if(_go_standby_func)
     {
         (*_go_standby_func)();
+    }
+    else
+    {
+        [_logFeed majorErrorText:@"SchrittmacherClient: _go_standby_func is NULL"];
     }
 }
 
