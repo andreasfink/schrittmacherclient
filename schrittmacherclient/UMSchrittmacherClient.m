@@ -283,5 +283,48 @@
     [_logFeed infoText:n];
 }
 
+
+- (NSString *)wantedStateString
+{
+    switch(_wantedState)
+    {
+        case SchrittmacherClientWantedState_hot:
+            return @"hot";
+            break;
+        case SchrittmacherClientWantedState_standby:
+            return @"standby";
+            break;
+        default:
+            return [NSString stringWithFormat:@"unknown wanted state %d",_wantedState];
+    }
+}
+
+- (NSString *)currentStateString
+{
+    switch(_currentState)
+    {
+        case SchrittmacherClientCurrentState_inactive:
+            return @"inactive";
+            break;
+        case SchrittmacherClientCurrentState_active:
+            return @"active";
+            break;
+        case SchrittmacherClientCurrentState_failed:
+            return @"failed";
+            break;
+        case SchrittmacherClientCurrentState_unknown:
+            return @"unknown";
+            break;
+        case SchrittmacherClientCurrentState_transiting_to_hot:
+            return @"transiting-to-hot";
+            break;
+        case SchrittmacherClientCurrentState_transiting_to_standby:
+            return @"transiting-to-standby";
+            break;
+        default:
+            return [NSString stringWithFormat:@"unknown current state %d",_currentState];
+    }
+}
+
 @end
 

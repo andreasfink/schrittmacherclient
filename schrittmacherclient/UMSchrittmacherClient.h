@@ -19,18 +19,18 @@
 
 typedef enum SchrittmacherClientWantedState
 {
-    SchrittmacherClientWantedState_hot,
-    SchrittmacherClientWantedState_standby,
+    SchrittmacherClientWantedState_hot                      = 101,
+    SchrittmacherClientWantedState_standby                  = 102,
 } SchrittmacherClientWantedState;
 
 typedef enum SchrittmacherClientCurrentState
 {
-    SchrittmacherClientCurrentState_inactive,
-    SchrittmacherClientCurrentState_active,
-    SchrittmacherClientCurrentState_failed,
-    SchrittmacherClientCurrentState_unknown,
-    SchrittmacherClientCurrentState_transiting_to_hot,
-    SchrittmacherClientCurrentState_transiting_to_standby,
+    SchrittmacherClientCurrentState_inactive                = 200,
+    SchrittmacherClientCurrentState_active                  = 201,
+    SchrittmacherClientCurrentState_failed                  = 202,
+    SchrittmacherClientCurrentState_unknown                 = 203,
+    SchrittmacherClientCurrentState_transiting_to_hot       = 204,
+    SchrittmacherClientCurrentState_transiting_to_standby   = 205,
 } SchrittmacherClientCurrentState;
 
 
@@ -55,6 +55,8 @@ typedef void (*schrittmacher_func_ptr)(void);
     UMLogLevel                      _logLevel;
 }
 
+- (NSString *)wantedStateString;
+- (NSString *)currentStateString;
 @property(readwrite,strong)     NSString *daemonAddress;
 
 @property(readwrite,strong)     NSString *resourceId;
