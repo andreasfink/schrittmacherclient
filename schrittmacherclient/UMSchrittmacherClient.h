@@ -53,6 +53,7 @@ typedef void (*schrittmacher_func_ptr)(void);
     NSString                        *_failureReason;
     BOOL                            _loggingEnabled;
     UMLogLevel                      _logLevel;
+    long                            _pid;
 }
 
 - (NSString *)wantedStateString;

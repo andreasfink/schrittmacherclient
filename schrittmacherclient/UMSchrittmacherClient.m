@@ -20,6 +20,7 @@
         _localHost = [[UMHost alloc]initWithAddress:@"127.0.0.1"];
         _port = 7701; /* default port */
         _max_transiting_counter = 30;
+        _pid = (long)getpid();
     }
     return self;
 }
@@ -70,6 +71,7 @@
     NSDictionary *dict = @{ @"resource" : self.resourceId,
                             @"status"   : status,
                             @"priority" : @(0),
+                            @"pid" :      @(_pid),
                             @"random"   : @(0)};
     
     NSString *msg = [dict jsonString];
