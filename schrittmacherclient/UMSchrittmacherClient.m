@@ -70,16 +70,16 @@
     }
 
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    dict[@"resource"] = self.resourceId,
-    dict[@"status"] = status,
-    dict[@"priority"] = @(0),
+    dict[@"resource"] = self.resourceId;
+    dict[@"status"] = status;
+    dict[@"priority"] = @(0);
     if(_pid>0)
     {
         dict[@"pid"] = @(_pid);
     }
     if(_adminweb_port>0)
     {
-        dict[@"adminweb-port" = @(_adminweb_port);
+        dict[@"adminweb-port"] = @(_adminweb_port);
     }
     dict[@"random"] =@(0);
     
