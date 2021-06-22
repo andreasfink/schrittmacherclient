@@ -54,6 +54,7 @@ typedef void (*schrittmacher_func_ptr)(void);
     BOOL                            _loggingEnabled;
     UMLogLevel                      _logLevel;
     long                            _pid;
+    int                             _adminweb_port;
 }
 
 - (NSString *)wantedStateString;
@@ -73,6 +74,7 @@ typedef void (*schrittmacher_func_ptr)(void);
 @property(readwrite,strong)     NSString                        *failureReason;
 @property(readwrite,assign)     BOOL                            loggingEnabled;
 @property(readwrite,assign)     UMLogLevel                      logLevel;
+@property(readwrite,assign)     int adminweb_port;
 
 - (void)reportActive;
 - (void)reportInactive;

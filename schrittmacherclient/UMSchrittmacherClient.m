@@ -21,6 +21,7 @@
         _port = 7701; /* default port */
         _max_transiting_counter = 30;
         _pid = (long)getpid();
+        _adminweb_port = 0;
     }
     return self;
 }
@@ -68,11 +69,19 @@
         @throw([NSException exceptionWithName:@"INV_DATA" reason:@"Schrittmacher invalid status requested" userInfo:NULL]);
     }
 
-    NSDictionary *dict = @{ @"resource" : self.resourceId,
-                            @"status"   : status,
-                            @"priority" : @(0),
-                            @"pid" :      @(_pid),
-                            @"random"   : @(0)};
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    dict[@"resource"] = self.resourceId,
+    dict[@"status"] = status,
+    dict[@"priority"] = @(0),
+    if(_pid>0)
+    {
+        dict[@"pid"] = @(_pid);
+    }
+    if(_adminweb_port>0)
+    {
+        dict[@"adminweb-port" = @(_adminweb_port);
+    }
+    dict[@"random"] =@(0);
     
     NSString *msg = [dict jsonString];
 
