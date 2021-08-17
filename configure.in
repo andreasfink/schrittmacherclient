@@ -4,7 +4,7 @@ dnl  * Copyright © 2017 Andreas Fink (andreas@fink.org). All rights reserved.
 dnl  * ====================================================================
 dnl  */ 
 dnl initialization
-AC_PREREQ([2.71])
+AC_PREREQ([2.69])
 AC_INIT([schrittmacherclient],[1.0],[andreas@fink.org])
 
 dnl generic parameters
