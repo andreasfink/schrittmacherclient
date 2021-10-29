@@ -53,11 +53,11 @@
     _uc = NULL;
 }
 
-- (void)sendStatus:(NSString *)status
+- (void)sendStatus:(NSString *)status withReason:(NSString *)reason
 {
     if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
     {
-        [_logFeed debugText:[NSString stringWithFormat:@"SchrittmacherClient: sending status %@",status]];
+        [_logFeed debugText:[NSString stringWithFormat:@"SchrittmacherClient: sending comment %@",status]];
     }
 
     if(_resourceId==NULL)
@@ -72,6 +72,10 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     dict[@"resource"] = self.resourceId;
     dict[@"status"] = status;
+    if(reason.length > 0)
+    {
+        dict[@"reason"] = reason;
+    }
     dict[@"priority"] = @(0);
     if(_pid>0)
     {
@@ -82,9 +86,7 @@
         dict[@"adminweb-port"] = @(_adminweb_port);
     }
     dict[@"random"] =@(0);
-    
     NSString *msg = [dict jsonString];
-
     const char *utf8 = msg.UTF8String;
     size_t len = strlen(utf8);
     NSData *d = [NSData dataWithBytes:utf8 length:len];
@@ -108,6 +110,12 @@
 
 - (void)reportTransitingToHot
 {
+    [self reportTransitingToHot:NULL];
+}
+
+- (void)reportTransitingToHot:(NSString *)reason
+{
+    _lastReason = reason;
     if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
     {
         [_logFeed debugText:@"SchrittmacherClient: reportTransitingToHot"];
@@ -118,6 +126,12 @@
 
 - (void)reportTransitingToStandby
 {
+    [self reportTransitingToStandby:NULL];
+}
+
+- (void)reportTransitingToStandby:(NSString *)reason
+{
+    _lastReason = reason;
     if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
     {
         [_logFeed debugText:@"SchrittmacherClient: reportTransitingToStandby"];
@@ -126,8 +140,15 @@
     [self doHeartbeat];
 }
 
+
 - (void)reportUnknown
 {
+    [self reportUnknown:NULL];
+}
+
+- (void)reportUnknown:(NSString *)reason
+{
+    _lastReason = reason;
     if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
     {
         [_logFeed debugText:@"SchrittmacherClient: reportUnknown"];
@@ -139,6 +160,12 @@
 
 - (void)reportActive
 {
+    [self reportActive:NULL];
+}
+
+- (void)reportActive:(NSString *)reason
+{
+    _lastReason = reason;
     if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
     {
         [_logFeed debugText:@"SchrittmacherClient: reportActive"];
@@ -149,6 +176,12 @@
 
 - (void)reportInactive
 {
+    [self reportInactive:NULL];
+}
+
+- (void)reportInactive:(NSString *)reason
+{
+    _lastReason = reason;
     if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
     {
         [_logFeed debugText:@"SchrittmacherClient: reportInactive"];
@@ -159,12 +192,12 @@
 
 - (void)reportFailed:(NSString *)failureReason
 {
+    _lastReason = failureReason;
     if(_loggingEnabled && (_logLevel <= UMLOG_DEBUG))
     {
         NSString *s = [NSString stringWithFormat:@"SchrittmacherClient: reportFailed:%@",failureReason];
         [_logFeed debugText:s];
     }
-    [self sendStatus:MESSAGE_LOCAL_FAIL];
     _currentState = SchrittmacherClientCurrentState_failed;
     [self doHeartbeat];
 }
@@ -227,22 +260,22 @@
     switch(_currentState)
     {
         case SchrittmacherClientCurrentState_active:
-            [self sendStatus:MESSAGE_LOCAL_HOT];
+            [self sendStatus:MESSAGE_LOCAL_HOT withReason:_lastReason];
             _transiting_counter = 0;
             break;
             
         case SchrittmacherClientCurrentState_inactive:
-            [self sendStatus:MESSAGE_LOCAL_STANDBY];
+            [self sendStatus:MESSAGE_LOCAL_STANDBY withReason:_lastReason];
             _transiting_counter = 0;
             break;
 
         case SchrittmacherClientCurrentState_failed:
-            [self sendStatus:MESSAGE_LOCAL_FAIL];
+            [self sendStatus:MESSAGE_LOCAL_FAIL withReason:_lastReason] ;
             _transiting_counter = 0;
             break;
             
         case SchrittmacherClientCurrentState_unknown:
-            [self sendStatus:MESSAGE_LOCAL_UNKNOWN];
+            [self sendStatus:MESSAGE_LOCAL_UNKNOWN withReason:_lastReason];
             _transiting_counter = 0;
             break;
         case SchrittmacherClientCurrentState_transiting_to_hot:
@@ -250,12 +283,12 @@
             if(_transiting_counter > _max_transiting_counter)
             {
                 _currentState = SchrittmacherClientCurrentState_failed;
-                [self sendStatus:MESSAGE_LOCAL_FAIL];
+                [self sendStatus:MESSAGE_LOCAL_FAIL withReason:_lastReason];
                 _transiting_counter=0;
             }
             else
             {
-                [self sendStatus:MESSAGE_LOCAL_TRANSITING_TO_HOT];
+                [self sendStatus:MESSAGE_LOCAL_TRANSITING_TO_HOT withReason:_lastReason];
             }
             break;
 
@@ -264,12 +297,12 @@
             if(_transiting_counter > _max_transiting_counter)
             {
                 _currentState = SchrittmacherClientCurrentState_failed;
-                [self sendStatus:MESSAGE_LOCAL_FAIL];
+                [self sendStatus:MESSAGE_LOCAL_FAIL withReason:_lastReason];
                 _transiting_counter=0;
             }
             else
             {
-                [self sendStatus:MESSAGE_LOCAL_TRANSITING_TO_STANDBY];
+                [self sendStatus:MESSAGE_LOCAL_TRANSITING_TO_STANDBY withReason:_lastReason];
             }
             break;
     }
@@ -277,12 +310,12 @@
 
 - (void)requestTakeover
 {
-    [self sendStatus:MESSAGE_LOCAL_REQUEST_TAKEOVER];
+    [self sendStatus:MESSAGE_LOCAL_REQUEST_TAKEOVER withReason:@"user-requested"];
 }
 
 - (void)requestFailover
 {
-    [self sendStatus:MESSAGE_LOCAL_REQUEST_FAILOVER];
+    [self sendStatus:MESSAGE_LOCAL_REQUEST_FAILOVER withReason:@"user-requested"];
 }
 
 - (void)log:(NSString *)n

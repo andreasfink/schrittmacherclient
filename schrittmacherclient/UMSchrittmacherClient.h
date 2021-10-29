@@ -55,6 +55,7 @@ typedef void (*schrittmacher_func_ptr)(void);
     UMLogLevel                      _logLevel;
     long                            _pid;
     int                             _adminweb_port;
+    NSString                        *_lastReason;
 }
 
 - (NSString *)wantedStateString;
@@ -77,11 +78,22 @@ typedef void (*schrittmacher_func_ptr)(void);
 @property(readwrite,assign)     int adminweb_port;
 
 - (void)reportActive;
+- (void)reportActive:(NSString *)reason;
+
 - (void)reportInactive;
+- (void)reportInactive:(NSString *)reason;
+
 - (void)reportFailed:(NSString *)failureReason;
+
 - (void)reportTransitingToHot;
+- (void)reportTransitingToHot:(NSString *)reason;
+
 - (void)reportTransitingToStandby;
+- (void)reportTransitingToStandby:(NSString *)reason;
+
 - (void)reportUnknown;
+- (void)reportUnknown:(NSString *)reason;
+
 - (void)start;
 - (void)stop;
 - (void)signalGoHot;
@@ -90,8 +102,6 @@ typedef void (*schrittmacher_func_ptr)(void);
 - (void)log:(NSString *)n;
 - (void)requestTakeover;
 - (void)requestFailover;
-
-//- (void)sendStatus:(NSString *)status;
 
 @end
 
