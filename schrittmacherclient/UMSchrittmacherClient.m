@@ -72,6 +72,14 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     dict[@"resource"] = self.resourceId;
     dict[@"status"] = status;
+    if(_type)
+    {
+        dict[@"type"] = _type;
+    }
+    if(_host)
+    {
+        dict[@"host"] = _host;
+    }
     if(reason.length > 0)
     {
         dict[@"reason"] = reason;

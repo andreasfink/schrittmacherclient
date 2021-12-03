@@ -56,6 +56,8 @@ typedef void (*schrittmacher_func_ptr)(void);
     long                            _pid;
     int                             _adminweb_port;
     NSString                        *_lastReason;
+    NSString                        *_type;
+    NSString                        *_host;
 }
 
 - (NSString *)wantedStateString;
@@ -73,6 +75,8 @@ typedef void (*schrittmacher_func_ptr)(void);
 @property(readwrite,assign)     int max_transiting_counter;
 @property(readwrite,assign)     int transiting_counter;
 @property(readwrite,strong)     NSString                        *failureReason;
+@property(readwrite,strong)     NSString                        *type;
+@property(readwrite,strong)     NSString                        *host;
 @property(readwrite,assign)     BOOL                            loggingEnabled;
 @property(readwrite,assign)     UMLogLevel                      logLevel;
 @property(readwrite,assign)     int adminweb_port;
