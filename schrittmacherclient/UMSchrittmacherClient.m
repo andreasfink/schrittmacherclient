@@ -45,10 +45,23 @@
     _uc.localHost =  _localHost;
     _uc.localPort = 0;
     _uc.RemoteHost = _localHost;
+
+    if(_hbTimer == NULL)
+    {
+        _hbTimer = [[UMTimer alloc] initWithTarget:self
+                                          selector:@selector(doHeartbeat)
+                                            object:NULL
+                                           seconds:1.5
+                                              name:@"schrittmacher-heartbeat"
+                                           repeats:YES
+                                   runInForeground:YES];
+    }
+    [_hbTimer start];
 }
 
 - (void) stop
 {
+    [_hbTimer stop];
     [_uc close];
     _uc = NULL;
 }

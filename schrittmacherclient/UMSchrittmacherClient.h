@@ -58,6 +58,7 @@ typedef void (*schrittmacher_func_ptr)(void);
     NSString                        *_lastReason;
     NSString                        *_type;
     NSString                        *_host;
+    UMTimer                         *_hbTimer;
 }
 
 - (NSString *)wantedStateString;
