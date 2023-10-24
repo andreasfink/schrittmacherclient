@@ -8,4 +8,4 @@
 
 #import <ulib/ulib.h>
 
-#import "UMSchrittmacherClient.h"
+#import <schrittmacherclient/UMSchrittmacherClient.h>
