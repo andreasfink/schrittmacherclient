@@ -6,7 +6,7 @@
 #
 
 CC=@CC@
-CFLAGS=@CFLAGS@ -Ischrittmacherclient/
+CFLAGS=@CFLAGS@ -I@PROJECT_NAME@/
 CONFIGURATION=Release
 LDFLAGS=@LDFLAGS@
 MAJORVER=@MAJORVER@
@@ -17,8 +17,8 @@ LIB=lib@PROJECT_NAME@.@SHARED_LIBRARY_EXTENSION@
 SLIB=lib@PROJECT_NAME@.a
 PKGCONFIGFILE=@PROJECT_NAME@.pc
 
-MFILES = $(wildcard schrittmacherclient/*.m)
-HFILES = version.h $(wildcard schrittmacherclient/*.h)
+MFILES = $(wildcard @PROJECT_NAME@/*.m)
+HFILES = version.h $(wildcard @PROJECT_NAME@/*.h)
 MOFILES  = $(MFILES:.m=.m.o)
 OFILES = $(MOFILES)
 
