@@ -18,6 +18,7 @@ buildnumber.h
 schrittmacherclient.pc
 schrittmacherclient/schrittmacherclient_config.h
 version.h
+make_buildnr.sh
 
 #########################
 # .gitignore file for Xcode4 and Xcode5 Source projects
