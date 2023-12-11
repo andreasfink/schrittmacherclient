@@ -1,0 +1,12 @@
+/* schrittmacherclient_config.h.  Generated from schrittmacherclient_config.h.in by configure.  */
+/* ==================================================================== 
+ * schrittmacherclient_config.h
+ * Project "schrittmacherclient"
+ * (c) 2002-2015,Andreas Fink, Basel, Switzerland
+ */ 
+
+#ifndef SCHRITTMACHERCLIENT_CONFIG_H
+#define SCHRITTMACHERCLIENT_CONFIG_H
+
+#endif
+
