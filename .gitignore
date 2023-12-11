@@ -19,6 +19,7 @@ schrittmacherclient.pc
 schrittmacherclient/schrittmacherclient_config.h
 version.h
 make_buildnr.sh
+*.m.d
 
 #########################
 # .gitignore file for Xcode4 and Xcode5 Source projects
