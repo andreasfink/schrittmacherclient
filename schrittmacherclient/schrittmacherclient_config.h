@@ -1,4 +1,5 @@
 /* schrittmacherclient/schrittmacherclient_config.h.  Generated from schrittmacherclient_config.h.in by configure.  */
+/* schrittmacherclient_config.h.  Generated from schrittmacherclient_config.h.in by configure.  */
 /* ==================================================================== 
  * schrittmacherclient_config.h
  * Project "schrittmacherclient"
