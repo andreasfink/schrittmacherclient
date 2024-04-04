@@ -9,4 +9,5 @@
 #import <ulib/ulib.h>
 
 #import <schrittmacherclient/UMSchrittmacherClient.h>
+#import <schrittmacherclient/schrittmacherclient_config.h>
 
