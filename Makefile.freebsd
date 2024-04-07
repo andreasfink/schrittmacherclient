@@ -5,15 +5,15 @@
 #
 #
 
-CC=/usr/bin/clang
-CFLAGS=-g -O2 -g -O2 -DSCHRITTMACHERCLIENT_CONFIG=Release -Ischrittmacherclient/
+CC=clang
+CFLAGS= -D_REENTRANT=1 -DDARWIN=1 -arch x86_64 -g -O2 -DSCHRITTMACHERCLIENT_CONFIG=Release -Ischrittmacherclient/
 CONFIGURATION=Release
-LDFLAGS=-fuse-ld=gold -g
+LDFLAGS= -g
 MAJORVER=2
 MINORVER=0
 REVISION=0
 
-LIB=libschrittmacherclient.
+LIB=libschrittmacherclient.dylib
 SLIB=libschrittmacherclient.a
 PKGCONFIGFILE=schrittmacherclient.pc
 
