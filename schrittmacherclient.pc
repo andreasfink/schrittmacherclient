@@ -1,0 +1,16 @@
+# pkg-config source file
+
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Cflags: -I${includedir}
+Libs: -L${libdir} -l:libschrittmacherclient..2.0 -lbsd
+
+Name: schrittmacherclient
+Description: client library for schrittmacher
+Version: 2.0.0
+Requires: ulib 
+
+
